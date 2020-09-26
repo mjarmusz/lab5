@@ -1,5 +1,6 @@
-from flask import render_template
+from flask import render_template, flash, redirect
 from app import app
+from app.forms import NewBardForm
 import random
 
 
@@ -32,12 +33,16 @@ def bard():
             "description": "I'm drunk but talented and know many sad lays.",
             "place": "The Greasy Spoon",
             "placeDescription": "Get some nice ham and bread at the Greasy Spoon and hear Marillion sing. (Do not order the soup.  It is unspeakable.)"}
-
-
     return render_template('bard.html', bard=bard)
-@app.route('/newBards')
-def newBards():
-    construction = {"create": "Create a new bard",
-                    "const": "Page under construction."}
 
-    return render_template('newBards.html', construction=construction)
+
+@app.route('/newBards', methods=['GET', 'POST'])
+def newBards():
+    form = NewBardForm()
+    if form.validate_on_submit():
+        flash('Created new Bard: {}'.format(
+            form.bardName.data, form.villageName.data))
+        final_form = NewBardForm()
+        render_template('newBards.html', title='New Bard', form=final_form)
+
+    return render_template('newBards.html', title='New Bard', form=form)

@@ -7,11 +7,30 @@
 
 </head>
 <body>
-<div><b><a href="/index">Wunderbard:</a></b>
-            <a href="/bards">Bards</a>
-        <a href="/newBards">New Bards</a>
+<div><b><a href="{{ url_for('index') }}">Wunderbard:</a></b>
+            <a href="{{ url_for('bards') }}">Bards</a>
+        <a href="{{ url_for('newBards') }}">New Bards</a>
 </div>
+  <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            <h1>{{ form.data.bardName }}</h1>
+            <h2>{{ form.data.villageName }}</h2>
+           <h4>{{ form.data.bardDescription }}</h4>
+            {% endfor %}
+            {% else %}
+            {% block content %}{% endblock %}
 
-{% block content %}{% endblock %}
+
+
+          {% endif %}
+        {% endwith %}
+        </ul>
+
+
+
 </body>
 </html>
