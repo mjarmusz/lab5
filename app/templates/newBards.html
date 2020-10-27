@@ -5,13 +5,30 @@
     <form action="" method="post" novalidate>
     {{  form.hidden_tag() }}
     <p>
-        {{ form.bardName.label }}<br>
-        {{  form.bardName(size=32) }}<br>
-        {% for error in form.bardName.errors %}
+        {{ form.name.label }}<br>
+        {{  form.name(size=32) }}<br>
+        {% for error in form.name.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
 
     </p>
+     <p>
+        {{ form.bardDescription.label }}<br>
+        {{ form.bardDescription(size=500) }}
+         {% for error in form.villageName.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+    </p>
+
+    <p>
+        {{ form.kingdom.label }}<br>
+        {{ form.kingdom(size=50) }}
+         {% for error in form.kingdom.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+    </p>
+
     <p>
         {{  form.villageName.label }}<br>
         {{  form.villageName(size=48) }}<br>
@@ -22,9 +39,9 @@
     </p>
 
     <p>
-        {{ form.bardDescription.label }}<br>
-        {{ form.bardDescription(size=500) }}
-         {% for error in form.villageName.errors %}
+        {{ form.eventName.label }}<br>
+        {{ form.eventName(size=48) }}
+         {% for error in form.eventName.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
 

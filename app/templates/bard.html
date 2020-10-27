@@ -2,11 +2,16 @@
 
 {% block content %}
 
-    <div><h1>{{  bard.singer }}</h1>
-        <h4>{{ bard.description }} </h4>
-        <h3>Upcoming event: {{ bard.place }}</h3>
-    <p>{{ bard.placeDescription }}</p>
-    </div>
+    <div><h1>Bard Name: {{ bard.name }}</h1>
+         <h2>Bard Description: {{ bard.description }}</h2>
 
+    {% for b2e in bard.bardToEvents %}
+            <h3>Event: {{ b2e.event.eventname }}</h3>
+        <ul>
+            <li><h4>Kingdom: {{ b2e.event.venue.kingdom }}</h4></li>
+            <li><h4>Village: {{ b2e.event.venue.village }}</h4></li>
+        </ul>
+    {% endfor %}
+    </div>
 
 {% endblock %}
