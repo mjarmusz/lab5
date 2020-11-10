@@ -15,33 +15,7 @@
      <p>
         {{ form.bardDescription.label }}<br>
         {{ form.bardDescription(size=500) }}
-         {% for error in form.villageName.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-
-    </p>
-
-    <p>
-        {{ form.kingdom.label }}<br>
-        {{ form.kingdom(size=50) }}
-         {% for error in form.kingdom.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-    </p>
-
-    <p>
-        {{  form.villageName.label }}<br>
-        {{  form.villageName(size=48) }}<br>
-         {% for error in form.villageName.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-
-    </p>
-
-    <p>
-        {{ form.eventName.label }}<br>
-        {{ form.eventName(size=48) }}
-         {% for error in form.eventName.errors %}
+         {% for error in form.bardDescription.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
 

@@ -8,8 +8,17 @@
 </head>
 <body>
 <div><b><a href="{{ url_for('index') }}">Wunderbard:</a></b>
-            <a href="{{ url_for('bards') }}">Bards</a>
+        {% if current_user.is_anonymous %}
+        <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+        {% else %}
+        <a href="{{ url_for('logout') }}">Logout</a>
         <a href="{{ url_for('newBards') }}">New Bards</a>
+        <a href="{{ url_for('event') }}">Event</a>
+        <a href="{{ url_for('venue') }}">Venue</a>
+        {% endif %}
+            <a href="{{ url_for('bards') }}">Bards</a>
+
 </div>
   <hr>
         {% with messages = get_flashed_messages() %}
