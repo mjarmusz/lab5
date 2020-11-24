@@ -2,14 +2,14 @@
 
 {% block content %}
 
-    <div><h1>Bard Name: {{ bard.name }}</h1>
-         <h2>Bard Description: {{ bard.description }}</h2>
+    <div class="ml-3"><h1>Bard Name: {{ bard.name }}</h1>
+         <h2 class="ml-3">Bard Description: {{ bard.description }}</h2>
     {% for b2e in bard.bardToEvents %}
-            <h3>Event: {{ b2e.event.eventname }}</h3>
+            <h3 class="ml-3">Event: {{ b2e.event.eventname }}</h3>
         <ul>
-            <li><h4>Kingdom: {{ b2e.event.venue.kingdom }}</h4></li>
-            <li><h4>Village: {{ b2e.event.venue.village }}</h4></li>
-            <li><h4>Time: {{ b2e.event.startTime }}</h4></li>
+            <li><h4 class="ml-3">Kingdom: {{ b2e.event.venue.kingdom }}</h4></li>
+            <li><h4 class="ml-3">Village: {{ b2e.event.venue.village }}</h4></li>
+            <li><h4 class="ml-3">Time: {{ b2e.event.startTime }}</h4></li>
         </ul>
     {% endfor %}
     </div>

@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<h1 class="ml-3">Bards</h1>
 {% for bard in bardList %}
 
-    <div><a href="{{ url_for('bard', name=bard.name) }}">{{ bard.name }}</a></div>
+    <div class="ml-3"><a href="{{ url_for('bard', name=bard.name) }}">{{ bard.name }}</a></div>
 
     {% endfor %}
 

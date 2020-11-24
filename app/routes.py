@@ -49,13 +49,11 @@ def newBards():
 def event():
     venueList= db.session.query(Venue).filter(Venue.id)
     eventList = db.session.query(Event).filter(Event.id)
-    allEvents = [i.id for i in eventList]
-    lastEvent = len(allEvents) + 1
+    #allEvents = [i.id for i in eventList]
+    #lastEvent = len(allEvents) + 1
     allVenues = [(i.id, i.village) for i in venueList]
     bardList = db.session.query(Bard).filter(Bard.id)
     allBards = [(i.id, i.name) for i in bardList]
-
-
     form = EventForm()
     form.venue.choices = allVenues
     form.bard.choices = allBards
@@ -63,11 +61,11 @@ def event():
         event = Event(eventname=form.name.data, venueID=form.venue.data, startTime=form.date.data)
         db.session.add(event)
         db.session.commit()
-
-        bard = BardToEvent(bardID=form.bard.data, eventID=lastEvent)
-        db.session.add(bard)
-        db.session.commit()
-
+        chosenBards = form.bard.data
+        for bardID in chosenBards:
+            bard = BardToEvent(bardID=bardID, eventID=event.id)
+            db.session.add(bard)
+            db.session.commit()
 
         #date = Event(startTime=form.startTime.data)
         #db.session.add(date)

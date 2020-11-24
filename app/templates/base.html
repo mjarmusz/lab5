@@ -1,45 +1,78 @@
-<html>
-<head>
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+    {{ title}}Wunderbard
+{% endblock %}
+
+<!-----------------------------------new navbar------------------------------------>
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{{ url_for('index') }}">Wunderbard</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('index') }}">Home<span class="sr-only">(current)</span></a>
+      </li>
+      {% if current_user.is_anonymous %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+      </li>
+          <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('bards') }}">Bards</a>
+      </li>
+      {% else %}
+           <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('bards') }}">Bards</a>
+      </li>
+          <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('newBards') }}">Create-Bard</a>
+      </li>
+          <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('event') }}">events</a>
+      </li>
+          <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('venue') }}">Create-Venue</a>
+      </li>
+           <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+      </li>
+      {% endif %}
+
+      </li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
+<!-----------------------------------end new navbar------------------------------------>
 
 
-    <title>{{ title}}Wunderbard</title>
 
 
-</head>
-<body>
-<div><b><a href="{{ url_for('index') }}">Wunderbard:</a></b>
-        {% if current_user.is_anonymous %}
-        <a href="{{ url_for('login') }}">Login</a>
-            <a href="{{ url_for('register') }}">Register</a>
-        {% else %}
-        <a href="{{ url_for('logout') }}">Logout</a>
-        <a href="{{ url_for('newBards') }}">New Bards</a>
-        <a href="{{ url_for('event') }}">Event</a>
-        <a href="{{ url_for('venue') }}">Venue</a>
-        {% endif %}
-            <a href="{{ url_for('bards') }}">Bards</a>
-
-</div>
-  <hr>
+{% block content %}
+    <div class="container">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
-        <ul>
             {% for message in messages %}
-            <li>{{ message }}</li>
-            <h1>{{ form.data.bardName }}</h1>
-            <h2>{{ form.data.villageName }}</h2>
-           <h4>{{ form.data.bardDescription }}</h4>
+            <div class="alert alert-info" role="alert">{{ message }}</div>
+
+
+
             {% endfor %}
-            {% else %}
-            {% block content %}{% endblock %}
-
-
-
-          {% endif %}
+        {% else %}
+        {% endif %}
         {% endwith %}
-        </ul>
+        {% block app_content %}{% endblock %}
+    </div>
+{% endblock %}
+
+<!-------------------------------------------------------------->
 
 
 
-</body>
-</html>
