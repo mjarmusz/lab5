@@ -74,6 +74,8 @@ def event():
         flash('Created new Event: {}'.format(
             form.name.data))
         final_form = EventForm()
+        final_form.venue.choices = allVenues
+        final_form.bard.choices = allBards
         render_template('event.html', title='Event', form=final_form)
 
     return render_template('event.html', title='Event', form=form)
